@@ -1,0 +1,63 @@
+<!-- Seminarplaner (Drag & Drop) – HEADER (08:00–22:00 + Pausen) -->
+<div class="sp-wrapper">
+  <header class="sp-header">
+    <h1 class="sp-header__title" id="sp-print-title">Seminarplaner (Drag & Drop)</h1>
+  </header>
+
+  <!-- Meta-Bar (Eingaben nur in dieser Liste & im Druck sichtbar) -->
+  <div class="sp-meta-grid" id="sp-meta-grid">
+    <div class="sp-meta-field">
+      <label for="sp-meta-title" class="sp-meta-label">Seminartitel</label>
+      <input id="sp-meta-title" class="sp-input" type="text" placeholder="Seminartitel">
+    </div>
+    <div class="sp-meta-field">
+      <label for="sp-meta-date" class="sp-meta-label">Datum</label>
+      <input id="sp-meta-date" class="sp-input" type="text" placeholder="Datum (z. B. 09.10.2025)">
+    </div>
+    <div class="sp-meta-field">
+      <label for="sp-meta-number" class="sp-meta-label">Seminarnummer</label>
+      <input id="sp-meta-number" class="sp-input" type="text" placeholder="Seminarnummer">
+    </div>
+    <div class="sp-meta-field">
+      <label for="sp-meta-contact" class="sp-meta-label">Kontakt</label>
+      <input id="sp-meta-contact" class="sp-input" type="text" placeholder="Kontakt (z. B. Name, E-Mail)">
+    </div>
+  </div>
+
+  <!-- Print-Header (wird aus obigen Eingaben befüllt) -->
+  <div class="sp-print-header" aria-hidden="true">
+    <div class="sp-ph"><span class="lbl">Seminartitel</span><span id="sp-ph-title" class="val">—</span></div>
+    <div class="sp-ph"><span class="lbl">Datum</span><span id="sp-ph-date" class="val">—</span></div>
+    <div class="sp-ph"><span class="lbl">Seminarnummer</span><span id="sp-ph-number" class="val">—</span></div>
+    <div class="sp-ph"><span class="lbl">Kontakt</span><span id="sp-ph-contact" class="val">—</span></div>
+  </div>
+
+  <div class="sp-tools">
+    <button class="sp-btn sp-btn--icon" id="sp-addbreak" type="button" title="Pause hinzufügen">
+      <span aria-hidden="true">⏸️</span>
+      <span>Pause</span>
+    </button>
+    <label class="sp-btn sp-btn--icon" title="Plan aus JSON importieren">
+      <span aria-hidden="true">📥</span>
+      <span>Import</span>
+      <input id="sp-import" type="file" accept="application/json" style="display:none" />
+    </label>
+    <button class="sp-btn sp-btn--icon" id="sp-export" type="button" title="Plan als JSON exportieren">
+      <span aria-hidden="true">💾</span>
+      <span>Export</span>
+    </button>
+    <button class="sp-btn sp-btn--icon" id="sp-clear" type="button" title="Gesamten Plan löschen">
+      <span aria-hidden="true">🗑️</span>
+      <span>Löschen</span>
+    </button>
+    <button class="sp-btn sp-btn--print" id="sp-print" type="button">🖨️ Als PDF drucken</button>
+    <div class="sp-zoom-controls" role="group" aria-label="Zoomsteuerung">
+      <button class="sp-zoom-btn" id="sp-zoom-out" type="button" title="Ansicht verkleinern">🔍−</button>
+      <span class="sp-zoom-indicator" id="sp-zoom-indicator">5 Min</span>
+      <button class="sp-zoom-btn" id="sp-zoom-in" type="button" title="Ansicht vergrößern">🔍+</button>
+    </div>
+  </div>
+
+  <div class="sp-layout">
+    <!-- Sidebar: Methoden (hier fügt Moodle pro Datensatz die Karte ein) -->
+    <aside class="sp-sidebar" id="sp-methods">
